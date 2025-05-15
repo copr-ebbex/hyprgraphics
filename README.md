@@ -1,0 +1,3 @@
+# hyprgraphics
+
+The hyprgraphics package
