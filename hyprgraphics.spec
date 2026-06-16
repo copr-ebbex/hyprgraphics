@@ -1,6 +1,7 @@
 %bcond libjxl 1
+%bcond libheif 1
 Name:           hyprgraphics
-Version:        0.1.5
+Version:        0.5.1
 Release:        %autorelease
 Summary:        Graphics library for Hyprland
 
@@ -13,18 +14,26 @@ ExcludeArch:    %{ix86}
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  pkgconfig(hyprlang)
+BuildRequires:  mesa-libEGL-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(hyprutils)
+BuildRequires:  pkgconfig(libdrm)
 BuildRequires:  pkgconfig(libjpeg)
-BuildRequires:  pkgconfig(libwebp)
 BuildRequires:  pkgconfig(libmagic)
-BuildRequires:  pkgconfig(spng)
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(librsvg-2.0)
+BuildRequires:  pkgconfig(libwebp)
+BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  pkgconfig(pixman-1)
 
 %if %{with libjxl}
 BuildRequires:  pkgconfig(libjxl)
 BuildRequires:  pkgconfig(libjxl_cms)
 BuildRequires:  pkgconfig(libjxl_threads)
+%endif
+
+%if %{with libheif}
+BuildRequires:  pkgconfig(libheif)
 %endif
 
 %description
@@ -56,7 +65,7 @@ rm tests/resource/images/hyprland.jpg
 %files
 %license LICENSE
 %doc README.md
-%{_libdir}/libhyprgraphics.so.0
+%{_libdir}/libhyprgraphics.so.4
 %{_libdir}/libhyprgraphics.so.%{version}
 
 %files devel
